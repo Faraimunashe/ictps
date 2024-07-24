@@ -2,11 +2,10 @@
     <Head title="My Targets" />
     <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
-          <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-            <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
-            <li class="breadcrumb-item active">Default</li>
-          </ol>
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="#!">Home</a></li>
+                <li class="breadcrumb-item active">Targets</li>
+            </ol>
         </nav>
         <div class="row gx-6 gy-3 mb-4 align-items-center">
           <div class="col-auto">

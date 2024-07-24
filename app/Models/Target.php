@@ -27,4 +27,14 @@ class Target extends Model
     {
         return $this->hasMany(Milestone::class);
     }
+
+    public function progress()
+    {
+        return $this->hasOne(TargetProgress::class);
+    }
+
+    public function attachments()
+    {
+        return $this->hasMany(TargetAttachment::class);
+    }
 }

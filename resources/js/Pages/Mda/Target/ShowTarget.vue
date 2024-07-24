@@ -14,19 +14,23 @@
                     <h2 class="mb-0">{{ target.name }}</h2>
                 </div>
                 <div class="col-12 col-md-auto d-flex">
+                    <Link :href="`/target/progress/${target.id}`" class="btn btn-phoenix-secondary px-3 px-sm-5 me-2">
+                        <ArrowPathIcon class="me-sm-2" style="height:16px;width:16px;" />
+                        <span class="d-none d-sm-inline">Update Progress</span>
+                    </Link>
                     <button class="btn btn-phoenix-secondary px-3 px-sm-5 me-2">
-                        <PencilSquareIcon class="fa-solid fa-edit me-sm-2" />
+                        <PencilSquareIcon class="me-sm-2" style="height:16px;width:16px;" />
                         <span class="d-none d-sm-inline">Edit</span>
                     </button>
                     <button class="btn btn-phoenix-danger me-2">
-                        <TrashIcon class="fa-solid fa-trash me-2" />
+                        <TrashIcon class="me-2" style="height:16px;width:16px;"/>
                         <span>Delete Target</span>
                     </button>
                 </div>
             </div>
           <div class="row g-4 g-xl-6">
             <TargetCard :target="target" />
-            <OverviewPanel />
+            <OverviewPanel :milestones="target.milestones" />
           </div>
         </div>
     </div>
@@ -37,12 +41,12 @@
     import Layout from "../../../Shared/Layout.vue";
     import TargetCard from "./Components/TargetCard.vue";
     import OverviewPanel from "./Components/OverviewPanel.vue";
-    import { PencilSquareIcon, TrashIcon } from '@heroicons/vue/24/solid';
+    import { PencilSquareIcon, TrashIcon, ArrowPathIcon } from '@heroicons/vue/24/solid';
 
     export default {
         layout: Layout,
         components: {
-            TargetCard, OverviewPanel, PencilSquareIcon, TrashIcon
+            TargetCard, OverviewPanel, PencilSquareIcon, TrashIcon, ArrowPathIcon
         },
         props: {
             target: Object

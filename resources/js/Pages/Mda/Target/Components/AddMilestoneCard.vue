@@ -43,7 +43,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary btn-sm me-1 mb-1" type="submit">Add Milestone</button>
+                            <button class="btn btn-phoenix-primary btn-sm me-1 mb-1" type="submit">Add Milestone</button>
+                            <button class="btn btn-phoenix-secondary btn-sm me-1 mb-1" type="reset">Reset</button>
                         </form>
                     </div>
                 </div>
@@ -69,8 +70,10 @@ let form = useForm({
     end_date: ''
 });
 
-let submitMilestone = () => {
-    form.post('/milestones')
+let submitMilestone = async () => {
+    await form.post('/milestones', {
+        onSuccess: () => form.reset()
+    });
 }
 
 </script>

@@ -17,10 +17,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="progress mb-2" style="height:5px">
-                          <div class="progress-bar bg-primary-lighter" data-bs-theme="light" role="progressbar" style="width: 40%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                          </div>
-                        </div>
+                        <TargetProgressIndicator :percentage="target.progress.progress" />
                         <div class="d-flex align-items-center justify-content-between">
                             <p class="mb-0">Scheduled: </p>
                             <div>
@@ -42,9 +39,10 @@
 <script>
 import AddMilestoneCard from "./AddMilestoneCard.vue";
 import { CalendarDaysIcon, MinusIcon } from '@heroicons/vue/24/solid'
+import TargetProgressIndicator from "./TargetProgressIndicator.vue";
 export default {
     components: {
-        AddMilestoneCard, CalendarDaysIcon, MinusIcon
+        AddMilestoneCard, CalendarDaysIcon, MinusIcon, TargetProgressIndicator
     },
     props: {
         target: Object

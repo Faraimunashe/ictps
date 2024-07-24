@@ -25,5 +25,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
 
 Route::group(['middleware' => ['auth', 'role:mda']], function(){
     Route::resource('targets', TargetController::class);
+    Route::post('/target/progress/{target_id}', [TargetController::class, 'update_progress']);
+    Route::get('/target/progress/{target_id}', [TargetController::class, 'progress']);
     Route::resource('milestones', MilestoneController::class);
 });

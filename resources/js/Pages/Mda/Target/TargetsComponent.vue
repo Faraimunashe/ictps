@@ -18,11 +18,9 @@
                     </div>
                     <div class="d-flex justify-content-between text-body-tertiary fw-semibold">
                         <p class="mb-2"> {{ target.status }}</p>
-                        <p class="mb-2 text-body-emphasis">70%</p>
+                        <p class="mb-2 text-body-emphasis">{{ target.progress.progress }}%</p>
                     </div>
-                    <div class="progress bg-success-subtle">
-                        <div class="progress-bar rounded bg-success" role="progressbar" aria-label="Success example" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
+                    <TargetProgressIndicator :percentage="target.progress.progress" />
                     <div class="d-flex align-items-center mt-4">
                         <p class="mb-0 fw-bold fs-9">Started :
                             <span class="fw-semibold text-body-tertiary text-opactity-85 ms-1">
@@ -44,9 +42,13 @@
 </template>
 
 <script>
+import TargetProgressIndicator from "./Components/TargetProgressIndicator.vue";
 export default {
     props: {
         targets: Object
     },
+    components: {
+        TargetProgressIndicator
+    }
 }
 </script>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Mda;
 use App\Http\Controllers\Controller;
 use App\Models\Mda;
 use App\Models\Target;
+use App\Models\TargetAttachment;
+use App\Models\TargetProgress;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +24,10 @@ class TargetController extends Controller
             return back()->withErrors(['error' => 'This user is not an MDA.']);
         }
         $search = $request->search;
-        $targets = Target::withCount('milestones')->where('mda_id', $mda->id)->latest()->paginate(12);
+        $targets = Target::with('progress')->withCount('milestones')->where('mda_id', $mda->id)->latest()->paginate(12);
         if(isset($search))
         {
-            $targets = Target::where('mda_id', $mda->id)
+            $targets = Target::with('progress')->withCount('milestones')->where('mda_id', $mda->id)
             ->where(function ($query) use ($search) {
                 $query->where('name', 'like', '%'.$search.'%')
                       ->orWhere('description', 'like', '%'.$search.'%');
@@ -67,7 +69,7 @@ class TargetController extends Controller
             {
                 return back()->withErrors(['error' => 'This user is not an MDA.']);
             }
-            Target::create([
+            $target = Target::create([
                 'mda_id' => $mda->id,
                 'name' => $request->name,
                 'description' => $request->description,
@@ -76,7 +78,12 @@ class TargetController extends Controller
                 'due_date' => $request->end_date
             ]);
 
-            return back()->withErrors(['success' => 'Successfully created target']);
+            TargetProgress::create([
+                'target_id' => $target->id,
+                'progress' => 0
+            ]);
+
+            return back()->withErrors(['success' => 'Target was created successfully.']);
         }catch(Exception $e){
 
             return back()->withErrors(['error' => $e->getMessage()]);
@@ -90,7 +97,7 @@ class TargetController extends Controller
      */
     public function show(string $id)
     {
-        $target = Target::with('milestones')->find($id);
+        $target = Target::with('progress')->with('milestones')->find($id);
         return inertia('Mda/Target/ShowTarget', [
             'target' => $target
         ]);
@@ -118,5 +125,61 @@ class TargetController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function progress($id)
+    {
+        $target = Target::with('progress')->with('milestones')->find($id);
+        return inertia('Mda/Target/UpdateTargetProgress', [
+            'target' => $target
+        ]);
+    }
+
+    public function update_progress(Request $request, string $id)
+    {
+        $request->validate([
+            'progress' => ['required', 'integer', 'min:0', 'max:100'],
+            'files.*' => ['nullable', 'file', 'max:5048'],
+        ]);
+
+        //dd($request->all(), $id);
+
+        try{
+            $file_paths = [];
+            if ($request->hasFile('files'))
+            {
+                foreach ($request->file('files') as $file)
+                {
+                    $file_paths[] = $file->store('target_attachments', 'public');
+                }
+            }
+
+            $target_progress = TargetProgress::where('target_id', $id)->first();
+            if(is_null($target_progress))
+            {
+                return back()->withErrors(['error' => 'Target progress was not found.']);
+            }
+
+            $attachment = new TargetAttachment();
+            $attachment->target_id = $id;
+            $attachment->files = json_encode($file_paths);
+            $attachment->progress = $request->progress;
+            $attachment->save();
+
+            $target_progress->progress = $request->progress;
+            $target_progress->save();
+
+            if($request->progress == 100)
+            {
+                $target = Target::find($id);
+                $target->status = 'COMPLETED';
+                $target->save();
+            }
+
+            return back()->withErrors(['success' => 'Target progress was updated.']);
+        }catch(Exception $e){
+
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }
