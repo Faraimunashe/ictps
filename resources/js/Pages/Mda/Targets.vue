@@ -39,8 +39,13 @@
             </div>
           </div>
         </div>
-        <TargetsComponent :targets="targets" />
-        <Pagination :links="targets.links" />
+        <div v-if="this.$page.props.targets_count === 0" class="row row-cols-1 row-cols-sm-12 g-3 mb-5">
+            <div class="border-top border-bottom border-translucent" id="leadDetailsTable" data-list='{"valueNames":["name","description","create_date","create_by","last_activity"],"page":5,"pagination":true}'>
+                <p class="text-sm my-2 text-danger text-center">No targets found!</p>
+            </div>
+        </div>
+        <TargetsComponent v-if="this.$page.props.targets_count !== 0" :targets="targets" />
+        <Pagination v-if="this.$page.props.targets_count !== 0" :links="targets.links" />
     </div>
 </template>
 <script>

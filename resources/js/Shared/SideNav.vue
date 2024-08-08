@@ -9,6 +9,15 @@
                         <NavLink href="/dashboard" :iconComponent="ChartPieIcon">
                             Dashboard
                         </NavLink>
+                        <NavLink href="/mdas" :iconComponent="UserIcon">
+                            MDAs
+                        </NavLink>
+                        <NavLink href="/quarters" :iconComponent="ClockIcon">
+                            Quarters
+                        </NavLink>
+                        <NavLink href="/users" :iconComponent="UsersIcon">
+                            Users
+                        </NavLink>
                     </li>
                     <li v-if="role.name == 'mda'" class="nav-item">
                         <p class="navbar-vertical-label">Pages</p>
@@ -32,7 +41,7 @@
 
 <script>
 import NavLink from "./Components/NavLink.vue";
-import { ChartPieIcon, RectangleStackIcon } from '@heroicons/vue/24/solid';
+import { ChartPieIcon, RectangleStackIcon, UsersIcon, ClockIcon, UserIcon } from '@heroicons/vue/24/solid';
 
 export default {
     components: {
@@ -40,7 +49,7 @@ export default {
     },
     data() {
         return {
-            ChartPieIcon, RectangleStackIcon
+            ChartPieIcon, RectangleStackIcon, UsersIcon, ClockIcon, UserIcon
         };
     },
     computed: {

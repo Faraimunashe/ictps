@@ -30,7 +30,7 @@
             </div>
           <div class="row g-4 g-xl-6">
             <TargetCard :target="target" />
-            <OverviewPanel :milestones="target.milestones" />
+            <OverviewPanel :milestones="target.milestones" :target="target" />
           </div>
         </div>
     </div>

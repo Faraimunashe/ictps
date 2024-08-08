@@ -12,4 +12,9 @@ class Department extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function mda()
+    {
+        return $this->hasOne(Mda::class);
+    }
 }

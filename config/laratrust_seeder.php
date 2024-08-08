@@ -17,6 +17,9 @@ return [
             'payments' => 'c,r,u,d',
             'profile' => 'r,u',
         ],
+        'permsec' => [
+            'profile' => 'r,u',
+        ],
         'mda' => [
             'profile' => 'r,u',
         ],

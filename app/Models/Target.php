@@ -10,6 +10,7 @@ class Target extends Model
     use HasFactory;
 
     protected $fillable = [
+        'quarter_id',
         'mda_id',
         'name',
         'description',
@@ -36,5 +37,10 @@ class Target extends Model
     public function attachments()
     {
         return $this->hasMany(TargetAttachment::class);
+    }
+
+    public function quarter()
+    {
+        return $this->belongsTo(Quarter::class);
     }
 }

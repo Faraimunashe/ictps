@@ -21,4 +21,9 @@ class Mda extends Model
     {
         return $this->hasMany(Target::class);
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

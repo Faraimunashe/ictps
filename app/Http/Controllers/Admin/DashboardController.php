@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Mda;
+use App\Models\Target;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,7 +14,32 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return inertia('Admin/Dashboards');
+        $current_quarter = get_current_quarter();
+        $quarter_targets_count = Target::where('quarter_id', $current_quarter->id)->count();
+        $mdas_count = Mda::count();
+        $pending_targets_count = Target::where('quarter_id', $current_quarter->id)->where('status', 'PENDING')->count();
+        $completed_targets_count = Target::where('quarter_id', $current_quarter->id)->where('status', 'COMPLETED')->count();
+
+        $icon_data = [
+            'quarter_targets_count' => $quarter_targets_count,
+            'mdas_count' => $mdas_count,
+            'pending_targets_count' => $pending_targets_count,
+            'completed_targets_count' => $completed_targets_count
+        ];
+
+        $departments = Mda::with('department')
+            ->withCount(['targets' => function ($query) use ($current_quarter) {
+                $query->where('quarter_id', $current_quarter->id);
+            }])->get();
+
+        $total_department_targets = $departments->sum('targets_count');
+
+        return inertia('Admin/Dashboards', [
+            'current_quarter' => $current_quarter,
+            'icon_data' => $icon_data,
+            'departments' => $departments,
+            'total_department_targets' => $total_department_targets
+        ]);
     }
 
     /**

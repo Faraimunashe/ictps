@@ -32,7 +32,7 @@
                     </div>
                   </div>
                 </div>
-                <AddMilestoneCard :target_id="target.id" />
+                <!-- <AddMilestoneCard :target_id="target.id" /> -->
             </div>
         </div>
 </template>

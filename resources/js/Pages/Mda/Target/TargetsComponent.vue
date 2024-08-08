@@ -12,10 +12,10 @@
                         </div>
                     </div>
                     <p><small>{{ target.description.substring(0, 70)+"..." }}</small></p>
-                    <div class="d-flex align-items-center mb-3">
+                    <!-- <div class="d-flex align-items-center mb-3">
                         <span class="fa-solid fa-user me-2 text-body-tertiary fs-9 fw-extra-bold"></span>
                         <p class="fw-bold mb-0 text-truncate lh-1">Milestones : <span class="fw-semibold text-primary ms-1"> {{ target.milestones_count }}</span></p>
-                    </div>
+                    </div> -->
                     <div class="d-flex justify-content-between text-body-tertiary fw-semibold">
                         <p class="mb-2"> {{ target.status }}</p>
                         <p class="mb-2 text-body-emphasis">{{ target.progress.progress }}%</p>

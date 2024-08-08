@@ -1,4 +1,5 @@
 <template>
+    <Head title="Create Target" />
 <div class="content">
         <nav class="mb-2" aria-label="breadcrumb">
           <ol class="breadcrumb mb-0">
@@ -56,7 +57,7 @@
               <div class="col-12 gy-6">
                 <div class="row g-3 justify-content-end">
                   <div class="col-auto">
-                    <button class="btn btn-phoenix-primary px-5">Cancel</button>
+                    <button type="reset" class="btn btn-phoenix-primary px-5">Cancel</button>
                   </div>
                   <div class="col-auto">
                     <button type="submit" class="btn btn-primary px-5 px-sm-15">Create Target</button>

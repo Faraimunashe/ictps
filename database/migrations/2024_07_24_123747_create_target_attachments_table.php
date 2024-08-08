@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('target_id');
             $table->text('files');
+            $table->string('size');
             $table->integer('progress');
             $table->timestamps();
             $table->foreign('target_id')->references('id')->on('targets')->onDelete('cascade');

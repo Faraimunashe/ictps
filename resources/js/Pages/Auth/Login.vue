@@ -2,13 +2,13 @@
     <Head title="Login" />
     <div class="container">
         <div class="row flex-center min-vh-100 py-5">
-          <form @submit.prevent="submit" class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
+          <form @submit.prevent="submit" class="col-sm-10 col-md-8 col-lg-6 col-xl-6 col-xxl-3">
             <a class="d-flex flex-center text-decoration-none mb-4" href="../../../index.html">
               <div class="d-flex align-items-center fw-bolder fs-3 d-inline-block"><img src="../../../images/logo.png" alt="phoenix" width="58" />
               </div>
             </a>
             <div class="text-center mb-7">
-              <h3 class="text-body-highlight">Account Login</h3>
+              <h3 class="text-body-highlight">Midlands Province Perfomance Monitoring</h3>
               <p class="text-body-tertiary">Get access to your account</p>
             </div>
             <div class="mb-3 text-start">

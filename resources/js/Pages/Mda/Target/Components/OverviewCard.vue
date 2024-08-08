@@ -8,7 +8,7 @@
                             <CurrencyDollarIcon class="text-success-dark" data-feather="dollar-sign" style="width:24px; height:24px" />
                         </div>
                         <div>
-                          <p class="fw-bold mb-1">Target Budget</p>
+                          <p class="fw-bold mb-1">Budget</p>
                           <h4 class="fw-bolder text-nowrap">$0</h4>
                         </div>
                       </div>
@@ -19,8 +19,8 @@
                             <BookmarkSquareIcon class="text-info-dark" style="width:24px; height:24px" />
                         </div>
                         <div>
-                          <p class="fw-bold mb-1">Target Milestones</p>
-                          <h4 class="fw-bolder text-nowrap">0</h4>
+                          <p class="fw-bold mb-1">Progress</p>
+                          <h4 class="fw-bolder text-nowrap">{{ target.progress.progress }}%</h4>
                         </div>
                       </div>
                     </div>
@@ -30,8 +30,8 @@
                             <PaperClipIcon class="text-primary-dark" style="width:24px; height:24px" />
                         </div>
                         <div>
-                          <p class="fw-bold mb-1">Target Attachments</p>
-                          <h4 class="fw-bolder text-nowrap">0</h4>
+                          <p class="fw-bold mb-1">Attachments</p>
+                          <h4 class="fw-bolder text-nowrap">{{ target.attachments_count }}</h4>
                         </div>
                       </div>
                     </div>
@@ -46,6 +46,9 @@ import { BookmarkSquareIcon, CheckCircleIcon, CurrencyDollarIcon, PaperClipIcon 
 export default {
     components: {
         CurrencyDollarIcon, BookmarkSquareIcon, CheckCircleIcon, PaperClipIcon
+    },
+    props: {
+        target: Object,
     }
 }
 </script>

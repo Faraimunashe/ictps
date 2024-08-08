@@ -47,4 +47,9 @@ class User extends Authenticatable implements LaratrustUser
             'password' => 'hashed',
         ];
     }
+
+    public function new_user()
+    {
+        return $this->hasOne(NewUser::class);
+    }
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('targets', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('mda_id');
+            $table->bigInteger('quarter_id');
             $table->string('name');
             $table->text('description');
             $table->string('status');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->date('due_date');
             $table->timestamps();
             $table->foreign('mda_id')->references('id')->on('mdas')->onDelete('cascade');
+            $table->foreign('quarter_id')->references('id')->on('quarters')->onDelete('cascade');
         });
     }
 

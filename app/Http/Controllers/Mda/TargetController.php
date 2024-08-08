@@ -70,6 +70,7 @@ class TargetController extends Controller
                 return back()->withErrors(['error' => 'This user is not an MDA.']);
             }
             $target = Target::create([
+                'quarter_id' => get_current_quarter()->id,
                 'mda_id' => $mda->id,
                 'name' => $request->name,
                 'description' => $request->description,
@@ -97,7 +98,7 @@ class TargetController extends Controller
      */
     public function show(string $id)
     {
-        $target = Target::with('progress')->with('milestones')->find($id);
+        $target = Target::with('attachments')->withCount('attachments')->with('progress')->with('milestones')->find($id);
         return inertia('Mda/Target/ShowTarget', [
             'target' => $target
         ]);
@@ -146,13 +147,18 @@ class TargetController extends Controller
 
         try{
             $file_paths = [];
+            $file_sizes = [];
             if ($request->hasFile('files'))
             {
                 foreach ($request->file('files') as $file)
                 {
                     $file_paths[] = $file->store('target_attachments', 'public');
+                    $size = $file->getSize();
+                    $file_sizes[] = $size;
                 }
             }
+
+            //dd($file_sizes, $file_paths);
 
             $target_progress = TargetProgress::where('target_id', $id)->first();
             if(is_null($target_progress))
@@ -164,6 +170,7 @@ class TargetController extends Controller
             $attachment->target_id = $id;
             $attachment->files = json_encode($file_paths);
             $attachment->progress = $request->progress;
+            $attachment->size = json_encode($file_sizes);
             $attachment->save();
 
             $target_progress->progress = $request->progress;

@@ -1,11 +1,11 @@
 <template>
     <div class="col-xl-7 col-xxl-8">
-        <OverviewCard />
+        <OverviewCard :target="target" />
         <TabLinks />
         <div class="tab-content" id="myTabContent">
-            <MilestoneTab :milestones="milestones" />
+            <!-- <MilestoneTab :milestones="milestones" /> -->
             <FinancialTab />
-            <AttachmentTab />
+            <AttachmentTab :target="target" />
         </div>
     </div>
 </template>
@@ -21,7 +21,8 @@
             OverviewCard, MilestoneTab, FinancialTab, AttachmentTab, TabLinks
         },
         props: {
-            milestones: Object
+            milestones: Object,
+            target: Object
         }
     }
 </script>

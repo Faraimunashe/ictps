@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-pane fade active show" id="tab-milestone" role="tabpanel" aria-labelledby="task-tab">
+    <div class="tab-pane fade" id="tab-milestone" role="tabpanel" aria-labelledby="task-tab">
         <div class="row align-items-center g-0 justify-content-start mb-3">
             <div class="col-12 col-sm-auto">
                 <div class="search-box w-100 mb-2 mb-sm-0" style="max-width:30rem;">
