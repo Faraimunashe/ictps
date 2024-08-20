@@ -7,7 +7,7 @@
             <Link class="navbar-brand me-1 me-sm-3" href="/dashboard">
               <div class="d-flex align-items-center">
                 <div class="d-flex align-items-center"><img src="../../images/logo.png" alt="phoenix" width="27" />
-                  <p class="logo-text ms-2 d-none d-sm-block">Targets</p>
+                  <p class="logo-text ms-2 d-none d-sm-block">Midlands Province Performance Monitoring</p>
                 </div>
               </div>
             </Link>
@@ -26,20 +26,15 @@
                       <div class="avatar avatar-xl ">
                         <img class="rounded-circle " src="../../images/farie.jpg" alt="Profile Image" />
                       </div>
-                      <h6 class="mt-2 text-body-emphasis">Faraimunashe Manjeese</h6>
-                    </div>
-                    <div class="mb-3 mx-3">
-                      <input class="form-control form-control-sm" id="statusUpdateInput" type="text" placeholder="Update your status" />
+                      <h6 class="mt-2 text-body-emphasis">{{ username }}</h6>
                     </div>
                   </div>
                   <div class="overflow-auto scrollbar" style="height: 10rem;">
                     <ul class="nav d-flex flex-column mb-2 pb-1">
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-body" data-feather="user"></span><span>Profile</span></a></li>
-                      <li class="nav-item"><a class="nav-link px-3" href="#!"><span class="me-2 text-body" data-feather="pie-chart"></span>Dashboard</a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-body" data-feather="lock"></span>Posts &amp; Activity</a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-body" data-feather="settings"></span>Settings &amp; Privacy </a></li>
                       <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-body" data-feather="help-circle"></span>Help Center</a></li>
-                      <li class="nav-item"><a class="nav-link px-3" href="#!"> <span class="me-2 text-body" data-feather="globe"></span>Language</a></li>
                     </ul>
                   </div>
                   <div class="card-footer p-0 border-top border-translucent">
@@ -74,3 +69,10 @@
         </div>
     </nav>
 </template>
+<script>
+    export default {
+        props: {
+            username: String
+        }
+    }
+</script>

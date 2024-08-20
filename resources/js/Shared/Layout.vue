@@ -1,7 +1,7 @@
 <template>
     <main class="main">
       <SideNav/>
-      <TopNav />
+      <TopNav :username="username" />
       <slot />
     </main>
 </template>

@@ -9,6 +9,9 @@
                         <NavLink href="/dashboard" :iconComponent="ChartPieIcon">
                             Dashboard
                         </NavLink>
+                        <NavLink href="/active-quarter-targets" :iconComponent="RectangleStackIcon">
+                            Targets
+                        </NavLink>
                         <NavLink href="/mdas" :iconComponent="UserIcon">
                             MDAs
                         </NavLink>

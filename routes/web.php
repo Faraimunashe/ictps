@@ -17,13 +17,13 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
-Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password');
+Route::post('/change-password', [ChangePasswordController::class, 'store'])->name('change-password');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthenticateController::class, 'index'])->name('dashboard');
-
-    Route::get('/change-password', [ChangePasswordController::class, 'index'])->name('change-password');
-    Route::post('/change-password', [ChangePasswordController::class, 'store'])->name('change-password');
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
 
 Route::group(['middleware' => ['auth', 'role:admin']], function(){
@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function(){
     Route::resource('users', UserController::class);
     Route::resource('quarters', QuarterController::class);
     Route::resource('mdas', MdaController::class);
+    Route::resource('active-quarter-targets', \App\Http\Controllers\Admin\TargetController::class);
 });
 
 Route::group(['middleware' => ['auth', 'role:mda']], function(){
