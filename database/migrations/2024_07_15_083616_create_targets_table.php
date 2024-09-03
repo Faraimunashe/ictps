@@ -15,14 +15,17 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('mda_id');
             $table->bigInteger('quarter_id');
+            $table->bigInteger('department_id');
             $table->string('name');
             $table->text('description');
             $table->string('status');
             $table->date('start_date');
             $table->date('due_date');
+            $table->boolean('overlaps')->default(false);
             $table->timestamps();
             $table->foreign('mda_id')->references('id')->on('mdas')->onDelete('cascade');
             $table->foreign('quarter_id')->references('id')->on('quarters')->onDelete('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }
 

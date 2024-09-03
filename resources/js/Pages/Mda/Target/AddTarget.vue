@@ -74,7 +74,7 @@
                         <div class="row mb-4">
                             <div class="col-12">
                                 <label class="form-label" for="name">Target title <code>*</code></label>
-                                <input v-model="form.name" :class="{'is-invalid': form.errors.name}" class="form-control" type="text" placeholder="Target title" />
+                                <input v-model="form.name" :class="{'is-invalid': form.errors.name}" class="form-control" type="text" id="name" placeholder="Target title" />
                                 <div class="invalid-feedback" v-if="form.errors.name">
                                     {{ form.errors.name }}
                                 </div>
@@ -112,21 +112,29 @@
                         </div>
                     </div>
 
-                    <div v-if="currentStep === 3" class="step">
+                    <div v-if="currentStep === 3" class="step row">
                         <!-- Step 3: Overlapping Information -->
                         <h4 class="mb-3" style="color: grey;">Quarter Information</h4>
-                        <div class="col-12">
-                            <div class="flatpickr-input-container">
-                                <input v-model="form.overlapping" class="form-check-input" type="checkbox" id="overlapping">
-                                <label class="form-check-label text-body" for="overlapping">
-                                    Target overlapping quarters?
-                                </label>
-                            </div>
-                        </div>
-                        <div v-if="form.overlapping" class="col-12">
-                            <div class="form-floating">
-                                <input v-model="form.overlapping_details" class="form-control" type="text" placeholder="Overlapping details">
-                                <label for="overlapping_details">Provide details for overlapping quarters</label>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input v-model="form.overlapping" class="form-check-input" type="checkbox" id="overlapping">
+                                    <label class="form-label text-body" for="overlapping">
+                                        Tick if target requires more than one querter to complete?
+                                    </label>
+                                </div>
+                                <div v-if="form.overlapping" class="col-md-6">
+                                    <label class="form-label" for="quarters">Select the quarters that you will be working on this target</label>
+                                    <multiselect
+                                        v-model="form.required_quarters"
+                                        :options="quarterOptions"
+                                        :multiple="true"
+                                        placeholder="Select quarters..."
+                                        label="name"
+                                        track-by="id"
+                                    >
+                                    </multiselect>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -181,9 +189,14 @@
 import Layout from "../../../Shared/Layout.vue";
 import { ref } from 'vue';
 import { useForm } from '@inertiajs/vue3';
+import Multiselect from 'vue-multiselect'
 
 export default {
     layout: Layout,
+    props: {
+        quarters: Array
+    },
+    components: { Multiselect },
     setup() {
         const form = useForm({
             name: '',
@@ -191,7 +204,8 @@ export default {
             start_date: '',
             end_date: '',
             overlapping: false,
-            overlapping_details: ''
+            overlapping_details: '',
+            required_quarters: []
         });
 
         const loading = ref(false);
@@ -226,7 +240,18 @@ export default {
             totalSteps,
             submitTarget
         };
-    }
+    },
+    computed: {
+        quarterOptions() {
+            return this.quarters.map(quarter => ({
+                id: quarter.id,
+                name: quarter.name,
+            }));
+        }
+    },
 };
 </script>
 
+<style>
+@import 'node_modules/vue-multiselect/dist/vue-multiselect.css';
+</style>

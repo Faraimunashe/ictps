@@ -43,4 +43,9 @@ class Target extends Model
     {
         return $this->belongsTo(Quarter::class);
     }
+
+    public function target_quarters()
+    {
+        return $this->hasMany(TargetQuarter::class);
+    }
 }

@@ -9,7 +9,6 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicons/favicon-32x32.png')}}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicons/favicon-16x16.png')}}">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicons/favicon.ico')}}">
-        <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json')}}">
         <meta name="msapplication-TileImage" content="{{ asset('assets/img/favicons/mstile-150x150.png')}}">
         <meta name="theme-color" content="#ffffff">
         <script src="{{ asset('vendors/imagesloaded/imagesloaded.pkgd.min.js')}}"></script>
@@ -20,6 +19,8 @@
         <!-- ===============================================-->
         <!--    Stylesheets-->
         <!-- ===============================================-->
+        <link href="{{asset('vendors/choices/choices.min.css')}}" rel="stylesheet">
+        <link href="{{asset('vendors/prism/prism-okaidia.css')}}" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
@@ -62,10 +63,10 @@
         <script src="{{ asset('vendors/is/is.min.js')}}"></script>
         <script src="{{ asset('vendors/fontawesome/all.min.js')}}"></script>
         <script src="{{ asset('vendors/lodash/lodash.min.js')}}"></script>
-        <script src="https://polyfill.io/v3/polyfill.min.js')}}?features=window.scroll"></script>
-        <script src="{{ asset('vendors/list.js')}}/list.min.js')}}"></script>
+        <script src="{{ asset('vendors/list.js/list.min.js')}}"></script>
         <script src="{{ asset('vendors/feather-icons/feather.min.js')}}"></script>
         <script src="{{ asset('vendors/dayjs/dayjs.min.js')}}"></script>
+        <script src="{{ asset('vendors/prism/prism.js')}}"></script>
         <script src="{{ asset('assets/js/phoenix.js')}}"></script>
         <script src="{{ asset('vendors/echarts/echarts.min.js')}}"></script>
         <script src="{{ asset('vendors/leaflet/leaflet.js')}}"></script>

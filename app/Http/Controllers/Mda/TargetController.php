@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mda;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mda;
+use App\Models\Quarter;
 use App\Models\Target;
 use App\Models\TargetAttachment;
 use App\Models\TargetProgress;
@@ -47,7 +48,10 @@ class TargetController extends Controller
     public function create()
     {
         //dd(route('targets.store'));
-        return inertia('Mda/Target/AddTarget');
+        $quarters = Quarter::orderBy('created_at', 'desc')->take(4)->get();
+        return inertia('Mda/Target/AddTarget', [
+            'quarters' => $quarters
+        ]);
     }
 
     /**
